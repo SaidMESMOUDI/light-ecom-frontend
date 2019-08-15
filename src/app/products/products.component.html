@@ -1,0 +1,26 @@
+<div *ngIf="products">
+  <div class="card-columns m-1">
+    <div class="card m-1" *ngFor="let p of products._embedded.products">
+      <div class="card-title rounded-top bg-secondary text-md-center text-white p-0 m-0"> {{p.name}} </div>
+      <div class="card-body bg-light p-0 m-0">
+        <table>
+          <tr>
+            <td>
+              <img class="float-left h-50 rounded-2" src="{{this.catalogueService.host+'/photoProduct/'+p.id}}" alt="{{p.name}}" />
+            </td>
+            <td class="small">{{p.description}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <ul class="card-footer list-group list-group-horizontal text-center small p-0">
+          <li class="list-group-item bg-primary p-0 m-1  text-white">Available: {{p.available == true ? "Yes": "No"}}</li>
+          <li class="list-group-item bg-success p-0 m-1  text-white">Promotion: {{p.promotion == true ? "Yes": "No"}}</li>
+          <li class="list-group-item bg-danger p-0 m-1  text-white"> {{p.currentPrice|number:'0.2'}} €</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
