@@ -1,16 +1,55 @@
-<div *ngIf="products">
-  <div class="card-columns m-1">
-    <div class="card m-1" *ngFor="let p of products._embedded.products">
-      <div class="card-title rounded-top bg-secondary text-md-center text-white p-0 m-0"> {{p.name}} </div>
+<div class="container-fluid m-0 p-1" *ngIf="products">
+  <div class="img-thumbnail"><h3>{{title}}</h3></div> <!-- class="jumbotron"-->
+  <div class="card-columns m-0 p-0">
+    <div class="card p-0 border-info has-success" *ngFor="let p of products._embedded.products">
+      <!-- [style.display]="p.available != true ? 'none': ''" -->
+      <div class="card-title rounded-top bg-info text-md-center text-white p-0 m-0">
+        {{p.name}}
+      </div>
       <div class="card-body bg-light p-0 m-0">
-        <table>
+        <table class="table-condensed">
           <tr>
-            <td>
-              <img class="float-left h-50 rounded-2" src="{{this.catalogueService.host+'/photoProduct/'+p.id}}" alt="{{p.name}}" />
+            <td rowspan="2">
+              <img class="float-left h-50 rounded-3" alt="{{p.name}}"
+                   src="{{this.catalogueService.host+'/photoProduct/'+p.id+'?ts='+timestamp}}" />
+
+              <button *ngIf="authService.isAdmin()" (click)="onEditPhoto(p)" class="btn-group-toggle btn-light m-1 p-0 rounded-3">
+                  <i class="material-icons md-18">add_a_photo</i>
+              </button>
             </td>
-            <td class="small">{{p.description}}</td>
+            <td class="small" *ngIf="p.available == true" [ngClass]="p.available == true ? 'text-black': 'text-danger'">
+              {{p.description}}
+            </td>
+            <td *ngIf="p.available == false" class="small text-danger"
+                [style.text-decoration]="p.available == false ? 'line-through': ''">
+              {{p.description}}
+            </td>
           </tr>
         </table>
+        <div class="tab-content" *ngIf="editPhoto == true && currentProduct == p">
+          <div class="input-group">
+            <div class="custom-file ml-1 mr-1">
+              <input class="custom-file-input small" type="file" id="importFile"
+                 (change)="onSelectedFile($event)" />
+              <label class="custom-file-label small" for="importFile">
+                 {{nameOfTheSelectedFile}}
+              </label>
+             </div>
+           </div>
+
+          <div *ngIf="selectedFiles">
+            <button class="btn btn-outline-info small m-1 p-1"
+                    (click)="uploadPhoto()"> Upload &nbsp;
+              <i class="material-icons md-18">cloud_upload </i>
+            </button>
+          </div>
+          <div *ngIf="!selectedFiles" class="progress ml-1 mr-1 rounded-2">
+            <div class="progress-bar bg-info progress-bar-striped progress-bar-animated"
+                 role="progressbar" [ngStyle]="{'width.%':progress}"
+                 aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">{{progress}}%
+            </div>
+          </div>
+        </div>
       </div>
 
       <div>

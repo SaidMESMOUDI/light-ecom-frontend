@@ -14,7 +14,7 @@
   }
 }
 
-@media (min-width: 62em) {
+@media (min-width: 64em) {
   .card-columns {
     -webkit-column-count: 4;
     -moz-column-count: 4;
@@ -22,10 +22,18 @@
   }
 }
 
-@media (min-width: 75em) {
+@media (min-width: 80em) {
   .card-columns {
     -webkit-column-count: 5;
     -moz-column-count: 5;
     column-count: 5;
+  }
+}
+
+@media (min-width: 92em) {
+  .card-columns {
+    -webkit-column-count: 6;
+    -moz-column-count: 6;
+    column-count: 6;
   }
 }

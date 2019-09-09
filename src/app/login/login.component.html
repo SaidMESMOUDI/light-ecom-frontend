@@ -1,0 +1,41 @@
+<!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
+
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h5 class="card-title text-center">Sign In</h5>
+          <form class="form-signin" #f="ngForm" (ngSubmit)="onLogin(f.value)">
+            <div class="form-group">
+              <input type="email" name="username" ngModel class="form-control rounded-pill text-center" placeholder="Email address" autocomplete="on" required autofocus />
+            </div>
+            <div class="form-group">
+              <input type="password" name="password" ngModel class="form-control rounded-pill text-center" placeholder="Password" autocomplete="on" required />
+            </div>
+
+            <div class="custom-control custom-checkbox mb-3">
+              <input type="checkbox" class="custom-control-input" id="customCheck1">
+              <label class="custom-control-label" for="customCheck1">Remember password</label>
+            </div>
+
+            <button class="btn btn-sm btn-primary btn-block text-uppercase" type="submit">
+              <i class="fas fa-sign-in-alt"></i> &nbsp; Sign in
+            </button>
+
+            <a class="d-block text-center mt-2 small" href="/register">Register</a>
+
+            <hr class="my-4">
+
+            <button class="btn btn-sm btn-google btn-block text-uppercase" type=""><i class="fab fa-google mr-2"></i> Sign in with Google</button>
+
+            <button class="btn btn-sm btn-facebook btn-block text-uppercase" type=""><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
